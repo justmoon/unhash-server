@@ -1,0 +1,45 @@
+{
+  "name": "unhash-server",
+  "version": "0.0.0",
+  "description": "Simple server for Unhash",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justmoon/unhash-server.git"
+  },
+  "keywords": [
+    "file",
+    "hosting",
+    "server",
+    "storage",
+    "s3",
+    "cas"
+  ],
+  "author": "Stefan Thomas <justmoon@members.fsf.org>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/justmoon/unhash-server/issues"
+  },
+  "homepage": "https://github.com/justmoon/unhash-server#readme",
+  "dependencies": {
+    "boom": "^5.2.0",
+    "digest-stream": "^2.0.0",
+    "fs-extra": "^4.0.0",
+    "koa": "^2.3.0",
+    "koa-logger": "^3.0.1",
+    "koa-router": "^7.2.1",
+    "mz": "^2.6.0",
+    "tempy": "^0.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.2.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}
