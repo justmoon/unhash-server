@@ -11,7 +11,6 @@ const DigestStream = require('digest-stream')
 const Plugin = require(process.env.UNHASH_ILP_PLUGIN || 'ilp-plugin-xrp-escrow')
 const tempy = require('tempy')
 
-
 // UNHASH_ILP_CREDENTIALS should look like this:
 // {
 //   secret: 'snGu...',
