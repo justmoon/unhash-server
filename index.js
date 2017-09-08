@@ -39,7 +39,7 @@ const digestToPath = (digest) =>
 
 router.get('/.well-known/unhash.json', (ctx) => {
   ctx.body = {
-    upload: 'http://localhost:3000/upload'
+    upload: (process.env.UNHASH_PUBLIC_URI || 'http://localhost:3000') + '/upload'
   }
 })
 
