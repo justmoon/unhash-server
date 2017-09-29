@@ -29,7 +29,7 @@
     "boom": "^5.2.0",
     "digest-stream": "^2.0.0",
     "fs-extra": "^4.0.0",
-    "ilp-plugin-xrp-escrow": "^1.0.1",
+    "ilp-plugin-xrp-escrow": "^1.0.4",
     "koa": "^2.3.0",
     "koa-ilp": "0.0.1",
     "koa-logger": "^3.0.1",
