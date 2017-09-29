@@ -29,7 +29,8 @@ docker pull justmoon/unhash-server
 Finally, we need to run Unhash Server. Here is an example command you can use:
 
 ``` sh
-docker run -it --rm --name my-unhash-server -e UNHASH_ILP_CREDENTIALS='{"server":"wss://s.altnet.rippletest.net:51233","secret":"[your testnet secret]"}' -e DEBUG=* justmoon/unhash-server
+export UNHASH_HOSTS='["localhost:3000"]'
+docker run -it --rm --name my-unhash-server -p 3000:3000 -e UNHASH_ILP_CREDENTIALS='{"server":"wss://s.altnet.rippletest.net:51233","secret":"ss6YmrV2dNNPLjzqgdjSvktJvz5Vs"}' -e DEBUG=* justmoon/unhash-server
 ```
 
 **Note:** Please replace `[your testnet secret]` with the "SECRET" you got in Step 1.
