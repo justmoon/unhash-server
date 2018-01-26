@@ -6,7 +6,6 @@ const Koa = require('koa')
 const Router = require('koa-router')
 const Logger = require('koa-logger')
 const KoaIlp = require('koa-ilp')
-const Boom = require('boom')
 const DigestStream = require('digest-stream')
 const tempy = require('tempy')
 const BigNumber = require('bignumber.js')
@@ -18,11 +17,7 @@ const ilp = new KoaIlp({ plugin })
 
 app.use(Logger())
 app.use(router.routes())
-app.use(router.allowedMethods({
-  throw: true,
-  notImplemented: () => Boom.notImplemented(),
-  methodNotAllowed: () => Boom.methodNotAllowed()
-}))
+app.use(router.allowedMethods())
 
 const SHA256_REGEX = /^[0-9a-fA-F]{64}$/
 
@@ -51,10 +46,12 @@ router.options('/upload', ilp.options({ price: async ctx => {
   return calculatePrice(sizeInBytes)
 }}))
 
-router.post('/upload', ilp.paid({
+router.post(['/', '/upload'], ilp.paid({
   price: ctx => calculatePrice(ctx.get('Content-Length'))
 }), async (ctx) => {
   const tempPath = tempy.file()
+  console.log('saving to', tempPath)
+  console.log('uploading for', ctx.get('Content-Length'))
 
   const digest = await (new Promise((resolve, reject) => {
     const digestStream = DigestStream('sha256', 'hex', resolve)
@@ -86,10 +83,6 @@ router.get('/:hash', async (ctx) => {
       ctx.body = fs.createReadStream(digestPath)
     }
   }
-})
-
-router.get('/', (ctx) => {
-  ctx.body = 'Hello World!'
 })
 
 app.listen(process.env.UNHASH_PORT || 3000)
