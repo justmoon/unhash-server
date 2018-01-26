@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/justmoon/unhash-server#readme",
   "dependencies": {
-    "boom": "^5.2.0",
     "digest-stream": "^2.0.0",
     "fs-extra": "^4.0.0",
     "ilp-plugin": "^3.0.0",
