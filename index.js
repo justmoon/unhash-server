@@ -10,6 +10,7 @@ const DigestStream = require('digest-stream')
 const tempy = require('tempy')
 const BigNumber = require('bignumber.js')
 const plugin = require('ilp-plugin')()
+const publicUri = process.env.UNHASH_PUBLIC_URI || 'http://localhost:3000'
 
 const app = new Koa()
 const router = new Router()
@@ -36,7 +37,7 @@ const calculatePrice = (sizeInBytes) => sizeOfInode.add(sizeInBytes).mul(costPer
 
 router.get('/.well-known/unhash.json', (ctx) => {
   ctx.body = {
-    upload: (process.env.UNHASH_PUBLIC_URI || 'http://localhost:3000') + '/upload'
+    upload: publicUri + '/'
   }
 })
 
@@ -46,7 +47,7 @@ router.options('/upload', ilp.options({ price: async ctx => {
   return calculatePrice(sizeInBytes)
 }}))
 
-router.post(['/', '/upload'], ilp.paid({
+router.post('/', ilp.paid({
   price: ctx => calculatePrice(ctx.get('Content-Length'))
 }), async (ctx) => {
   const tempPath = tempy.file()
@@ -68,7 +69,9 @@ router.post(['/', '/upload'], ilp.paid({
     ctx.status = 201
   }
 
+  const url = publicUri + '/' + digest
   ctx.body = {
+    url,
     digest
   }
 })
