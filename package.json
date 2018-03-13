@@ -1,6 +1,6 @@
 {
   "name": "unhash-server",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Simple server for Unhash",
   "main": "index.js",
   "scripts": {
